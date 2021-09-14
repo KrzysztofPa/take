@@ -10,9 +10,18 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production 
 ```
 npm run build
+
+### to run locally:
+
+1. npm run build
+
+2. #Open folder dist:
+
+3. npm install -g serve
+4. serve -s dist
 ```
 
 ### Lints and fixes files
