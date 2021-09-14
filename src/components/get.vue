@@ -1,7 +1,14 @@
 <template>
   <div class="get">
     <p>GET:</p>
-    <table>
+    <p>ID or Model</p>
+    <input v-model="search" placeholder="ID or Model" />
+    <p></p>
+    <button @click="searchById">Search By ID</button>
+    <button @click="searchByModel">Search By Model</button>
+    <p></p>
+
+    <table v-if="data.data">
       <tr>
         <th>ID</th>
         <th>Model</th>
@@ -15,6 +22,8 @@
         <th>{{ dat.seats }}</th>
       </tr>
     </table>
+
+    <p class="error" v-else>nothing found</p>
   </div>
 </template>
 
@@ -25,6 +34,7 @@ export default {
   data: function() {
     return {
       data: [],
+      search: "",
     };
   },
   mounted() {
@@ -36,7 +46,28 @@ export default {
       console.log(e);
     }
   },
-  methods: {},
+  methods: {
+    searchById: function() {
+      try {
+        axios
+          .get(`http://localhost:8080/take/bus/${this.search}`)
+          .then((response) => {
+            (this.data.data = []), this.data.data.push(response.data);
+          });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    searchByModel: function() {
+      try {
+        axios
+          .get(`http://localhost:8080/take/bus/model/${this.search}`)
+          .then((response) => (this.data = response));
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  },
 };
 </script>
 
@@ -44,5 +75,8 @@ export default {
 a {
   margin: 1em;
   color: #42b983;
+}
+.error {
+  color: red;
 }
 </style>

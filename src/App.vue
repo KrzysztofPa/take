@@ -61,4 +61,11 @@ th {
 table {
   margin: auto;
 }
+.success {
+  color: green;
+}
+a {
+  margin: 1em;
+  color: #42b983;
+}
 </style>

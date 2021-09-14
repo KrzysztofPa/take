@@ -10,6 +10,7 @@
     <input v-model.number="Seats" placeholder="Seats" />
     <p></p>
     <button @click="post">SEND</button>
+    <p class="success" v-if="send">SUCCESS</p>
   </div>
 </template>
 
@@ -22,24 +23,37 @@ export default {
       Model: "",
       Registration: "",
       Seats: 0,
+      send: false,
     };
   },
   methods: {
-    post: function() {
+    post: async function() {
       let bodyFormData = new FormData();
-      bodyFormData.append("Model", this.Model);
-      bodyFormData.append("Registration", this.Registration);
-      bodyFormData.append("Seats", this.Seats);
-      console.log(bodyFormData);
+      bodyFormData.append("model", this.Model);
+      bodyFormData.append("registration", this.Registration);
+      bodyFormData.append("seats", this.Seats);
 
-      try {
-        axios
-          .post("http://localhost:8080/take/bus")
-          .data(bodyFormData)
-          .then((response) => (this.data = response));
-      } catch (e) {
-        console.log(e);
-      }
+      var object = {};
+      bodyFormData.forEach((value, key) => (object[key] = value));
+      var json = JSON.stringify(object);
+
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/take/bus",
+        data: json,
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          //handle success
+          if (response.status === 200) {
+            this.send = true;
+          }
+        })
+        .catch((response) => {
+          this.send = false;
+          //handle error
+          console.log(response);
+        });
     },
   },
 };

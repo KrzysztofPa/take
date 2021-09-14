@@ -5,6 +5,7 @@
     <input v-model.number="id" placeholder="ID" />
     <p></p>
     <button @click="delet">Delete</button>
+    <p class="success" v-if="send">SUCCESS</p>
   </div>
 </template>
 
@@ -16,17 +17,24 @@ export default {
     return {
       response: "",
       id: 0,
+      send: false,
     };
   },
   methods: {
     delet: function() {
-      try {
-        axios
-          .delete(`http://localhost:8080/take/bus/${this.id}`)
-          .then((response) => (this.response = response));
-      } catch (e) {
-        console.log(e);
-      }
+      axios
+        .delete(`http://localhost:8080/take/bus/${this.id}`)
+        .then((response) => {
+          //handle success
+          if (response.status === 200) {
+            this.send = true;
+          }
+        })
+        .catch((response) => {
+          this.send = false;
+          //handle error
+          console.log(response);
+        });
     },
   },
 };
