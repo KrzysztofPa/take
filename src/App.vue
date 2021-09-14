@@ -1,39 +1,39 @@
 <template>
   <div id="app">
-    <Menu @changeMethod="getInfo" v-model="method" />
-    <Get v-if="method === 'get'" />
-    <Post v-else-if="method === 'post'" />
-    <Delet v-else-if="method === 'delete'" />
-    <Put v-else-if="method === 'put'" />
+    <MainMenu @changeApp="getInfo" v-model="currentApp" />
+    <Car v-if="currentApp === 'car'" />
+    <Carriage v-else-if="currentApp === 'carriage'" />
+    <Client v-else-if="currentApp === 'client'" />
+    <Route v-else-if="currentApp === 'route'" />
   </div>
 </template>
 
 <script>
-import Menu from "./components/Menu.vue";
-import Get from "./components/get.vue";
-import Post from "./components/post.vue";
-import Delet from "./components/delet.vue";
-import Put from "./components/put.vue";
+import Car from "./components/car/Car.vue";
+import Carriage from "./components/carriage/Carriage.vue";
+import Client from "./components/client/Client.vue";
+import Route from "./components/route/Route.vue";
+import MainMenu from "./components/mainMenu.vue";
 
 export default {
   name: "App",
 
   components: {
-    Menu,
-    Get,
-    Post,
-    Delet,
-    Put,
+    Car,
+    Carriage,
+    Client,
+    Route,
+    MainMenu,
   },
   data: function() {
     return {
-      method: "get",
+      currentApp: "car",
     };
   },
 
   methods: {
     getInfo: function(e) {
-      this.method = e;
+      this.currentApp = e;
     },
   },
 };
