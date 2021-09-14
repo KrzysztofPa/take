@@ -36,6 +36,7 @@ export default {
       console.log(e);
     }
   },
+  methods: {},
 };
 </script>
 

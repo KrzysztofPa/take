@@ -27,13 +27,12 @@ export default {
   },
   data: function() {
     return {
-      method: "post",
+      method: "get",
     };
   },
 
   methods: {
     getInfo: function(e) {
-      console.log(e);
       this.method = e;
     },
   },
