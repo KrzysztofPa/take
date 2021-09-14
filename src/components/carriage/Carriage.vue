@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p></p>
+    <p>CARRIAGE</p>
 
     <Menu @changeMethod="getInfo" v-model="method" />
     <Get v-if="method === 'get'" />

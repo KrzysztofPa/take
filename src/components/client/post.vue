@@ -2,12 +2,11 @@
   <div class="post">
     <p>POST:</p>
 
-    <p>Model</p>
-    <input v-model="Model" placeholder="Model" />
-    <p>Registration</p>
-    <input v-model="Registration" placeholder="Registration" />
-    <p>Seats</p>
-    <input v-model.number="Seats" placeholder="Seats" />
+    <p>FirstName</p>
+    <input v-model="Model" placeholder="FirstName" />
+    <p>LastName</p>
+    <input v-model="Registration" placeholder="LastName" />
+
     <p></p>
     <button @click="post">SEND</button>
     <p class="success" v-if="send">SUCCESS</p>
@@ -22,7 +21,7 @@ export default {
     return {
       Model: "",
       Registration: "",
-      Seats: 0,
+
       send: false,
     };
   },
@@ -31,7 +30,6 @@ export default {
       let bodyFormData = new FormData();
       bodyFormData.append("model", this.Model);
       bodyFormData.append("registration", this.Registration);
-      bodyFormData.append("seats", this.Seats);
 
       var object = {};
       bodyFormData.forEach((value, key) => (object[key] = value));
@@ -39,7 +37,7 @@ export default {
 
       await axios({
         method: "post",
-        url: "http://localhost:8080/take/bus",
+        url: "http://localhost:8080/take/client",
         data: json,
         headers: { "Content-Type": "application/json" },
       })

@@ -23,7 +23,7 @@ export default {
   methods: {
     delet: function() {
       axios
-        .delete(`http://localhost:8080/take/bus/${this.id}`)
+        .delete(`http://localhost:8080/take/client/${this.id}`)
         .then((response) => {
           //handle success
           if (response.status === 200) {

@@ -2,12 +2,12 @@
   <div class="post">
     <p>POST:</p>
 
-    <p>Model</p>
-    <input v-model="Model" placeholder="Model" />
-    <p>Registration</p>
-    <input v-model="Registration" placeholder="Registration" />
-    <p>Seats</p>
-    <input v-model.number="Seats" placeholder="Seats" />
+    <p>startPlace</p>
+    <input v-model="Model" placeholder="startPlace" />
+    <p>endPlace</p>
+    <input v-model="Registration" placeholder="endPlace" />
+    <p>Distance</p>
+    <input v-model.number="Seats" placeholder="Distance" />
     <p></p>
     <button @click="post">SEND</button>
     <p class="success" v-if="send">SUCCESS</p>
@@ -39,7 +39,7 @@ export default {
 
       await axios({
         method: "post",
-        url: "http://localhost:8080/take/bus",
+        url: "http://localhost:8080/take/route",
         data: json,
         headers: { "Content-Type": "application/json" },
       })

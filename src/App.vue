@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MainMenu @changeApp="getInfo" v-model="currentApp" />
-    <Car v-if="currentApp === 'car'" />
+    <Bus v-if="currentApp === 'bus'" />
     <Carriage v-else-if="currentApp === 'carriage'" />
     <Client v-else-if="currentApp === 'client'" />
     <Route v-else-if="currentApp === 'route'" />
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Car from "./components/car/Car.vue";
+import Bus from "./components/bus/Bus.vue";
 import Carriage from "./components/carriage/Carriage.vue";
 import Client from "./components/client/Client.vue";
 import Route from "./components/route/Route.vue";
@@ -19,7 +19,7 @@ export default {
   name: "App",
 
   components: {
-    Car,
+    Bus,
     Carriage,
     Client,
     Route,
@@ -27,7 +27,7 @@ export default {
   },
   data: function() {
     return {
-      currentApp: "car",
+      currentApp: "bus",
     };
   },
 

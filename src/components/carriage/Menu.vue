@@ -2,8 +2,6 @@
   <div class="links">
     <button @click="$emit('changeMethod', 'get')">get</button>
     <button @click="$emit('changeMethod', 'post')">post</button>
-    <button @click="$emit('changeMethod', 'delete')">delete</button>
-    <button @click="$emit('changeMethod', 'put')">put</button>
   </div>
 </template>
 

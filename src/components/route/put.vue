@@ -3,12 +3,13 @@
     <p>PUT:</p>
     <p>ID</p>
     <input v-model="Id" placeholder="ID" />
-    <p>Model</p>
-    <input v-model="Model" placeholder="Model" />
-    <p>Registration</p>
-    <input v-model="Registration" placeholder="Registration" />
-    <p>Seats</p>
-    <input v-model.number="Seats" placeholder="Seats" />
+    <p>startPlace</p>
+    <input v-model="Model" placeholder="startPlace" />
+    <p>endPlace</p>
+    <input v-model="Registration" placeholder="endPlace" />
+    <p>Distance</p>
+    <input v-model.number="Seats" placeholder="Distance" />
+    <p></p>
     <p></p>
     <button @click="put">SEND</button>
     <p class="success" v-if="send">SUCCESS</p>
@@ -41,7 +42,7 @@ export default {
 
       axios({
         method: "put",
-        url: `http://localhost:8080/take/bus/${this.Id}`,
+        url: `http://localhost:8080/take/route/${this.Id}`,
         data: json,
         headers: { "Content-Type": "application/json" },
       })

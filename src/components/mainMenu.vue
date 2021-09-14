@@ -1,6 +1,6 @@
 <template>
   <div class="links">
-    <button @click="$emit('changeApp', 'car')">Car</button>
+    <button @click="$emit('changeApp', 'bus')">Bus</button>
     <button @click="$emit('changeApp', 'carriage')">carriage</button>
     <button @click="$emit('changeApp', 'client')">client</button>
     <button @click="$emit('changeApp', 'route')">route</button>

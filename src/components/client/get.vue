@@ -1,25 +1,23 @@
 <template>
   <div class="get">
     <p>GET:</p>
-    <p>ID or Model</p>
+    <p>ID or LastName</p>
     <input v-model="search" placeholder="ID or Model" />
     <p></p>
     <button @click="searchById">Search By ID</button>
-    <button @click="searchByModel">Search By Model</button>
+    <button @click="searchByModel">Search By lastName</button>
     <p></p>
 
     <table v-if="data.data">
       <tr>
-        <th>ID</th>
-        <th>Model</th>
-        <th>Registration</th>
-        <th>Seats</th>
+        <th>Id</th>
+        <th>firstName</th>
+        <th>lastName</th>
       </tr>
       <tr v-for="dat in data.data" :key="dat.id">
         <th>{{ dat.id }}</th>
-        <th>{{ dat.model }}</th>
-        <th>{{ dat.registration }}</th>
-        <th>{{ dat.seats }}</th>
+        <th>{{ dat.firstName }}</th>
+        <th>{{ dat.lastName }}</th>
       </tr>
     </table>
 
@@ -40,7 +38,7 @@ export default {
   mounted() {
     try {
       axios
-        .get("http://localhost:8080/take/bus/model/Fiat")
+        .get("http://localhost:8080/take/client/lastName/Kulas")
         .then((response) => (this.data = response));
     } catch (e) {
       console.log(e);
@@ -50,7 +48,7 @@ export default {
     searchById: function() {
       try {
         axios
-          .get(`http://localhost:8080/take/bus/${this.search}`)
+          .get(`http://localhost:8080/take/client/${this.search}`)
           .then((response) => {
             (this.data.data = []), this.data.data.push(response.data);
           });
@@ -61,7 +59,7 @@ export default {
     searchByModel: function() {
       try {
         axios
-          .get(`http://localhost:8080/take/bus/model/${this.search}`)
+          .get(`http://localhost:8080/take/client/lastName/${this.search}`)
           .then((response) => (this.data = response));
       } catch (e) {
         console.log(e);

@@ -3,13 +3,11 @@
     <p>PUT:</p>
     <p>ID</p>
     <input v-model="Id" placeholder="ID" />
-    <p>Model</p>
-    <input v-model="Model" placeholder="Model" />
-    <p>Registration</p>
-    <input v-model="Registration" placeholder="Registration" />
-    <p>Seats</p>
-    <input v-model.number="Seats" placeholder="Seats" />
-    <p></p>
+    <p>FirstName</p>
+    <input v-model="Model" placeholder="FirstName" />
+    <p>LastName</p>
+    <input v-model="Registration" placeholder="LastName" />
+
     <button @click="put">SEND</button>
     <p class="success" v-if="send">SUCCESS</p>
   </div>
@@ -33,7 +31,6 @@ export default {
       let bodyFormData = new FormData();
       bodyFormData.append("model", this.Model);
       bodyFormData.append("registration", this.Registration);
-      bodyFormData.append("seats", this.Seats);
 
       var object = {};
       bodyFormData.forEach((value, key) => (object[key] = value));
@@ -41,7 +38,7 @@ export default {
 
       axios({
         method: "put",
-        url: `http://localhost:8080/take/bus/${this.Id}`,
+        url: `http://localhost:8080/take/client/${this.Id}`,
         data: json,
         headers: { "Content-Type": "application/json" },
       })

@@ -3,12 +3,14 @@
     <p>PUT:</p>
     <p>ID</p>
     <input v-model="Id" placeholder="ID" />
-    <p>Model</p>
-    <input v-model="Model" placeholder="Model" />
-    <p>Registration</p>
-    <input v-model="Registration" placeholder="Registration" />
-    <p>Seats</p>
-    <input v-model.number="Seats" placeholder="Seats" />
+    <p>StartTIme</p>
+    <input v-model="Model" placeholder="StartTIme" />
+    <p>endTime</p>
+    <input v-model="Registration" placeholder="endTime" />
+    <p>routeID</p>
+    <input v-model.number="Seats" placeholder="routeID" />
+    <p>busID</p>
+    <input v-model.number="busID" placeholder="busID" />
     <p></p>
     <button @click="put">SEND</button>
     <p class="success" v-if="send">SUCCESS</p>
@@ -25,24 +27,28 @@ export default {
       Model: "",
       Registration: "",
       Seats: 0,
+      busID: 0,
       send: false,
     };
   },
   methods: {
     put: function() {
-      let bodyFormData = new FormData();
-      bodyFormData.append("model", this.Model);
-      bodyFormData.append("registration", this.Registration);
-      bodyFormData.append("seats", this.Seats);
-
-      var object = {};
-      bodyFormData.forEach((value, key) => (object[key] = value));
-      var json = JSON.stringify(object);
+      let myJSON = `{"startTime": "${this.Model}",
+      "endTime":" ${this.Registration}"
+      "route" :{
+        "id" :"${this.Seats}"
+      },
+      "bus":{
+        "id": "${this.busID}"
+      }
+    
+      
+      }`;
 
       axios({
         method: "put",
         url: `http://localhost:8080/take/bus/${this.Id}`,
-        data: json,
+        data: myJSON,
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => {
