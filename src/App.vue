@@ -1,49 +1,41 @@
 <template>
   <div id="app">
-    <Menu />
-    <p>GET:</p>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Model</th>
-        <th>Registration</th>
-        <th>Seats</th>
-      </tr>
-      <tr v-for="dat in data.data" :key="dat.id">
-        <th>{{ dat.id }}</th>
-        <th>{{ dat.model }}</th>
-        <th>{{ dat.registration }}</th>
-        <th>{{ dat.seats }}</th>
-      </tr>
-    </table>
+    <Menu @changeMethod="getInfo" v-model="method" />
+    <Get v-if="method === 'get'" />
+    <Post v-else-if="method === 'post'" />
+    <Delet v-else-if="method === 'delete'" />
+    <Put v-else-if="method === 'put'" />
   </div>
 </template>
 
 <script>
 import Menu from "./components/Menu.vue";
-import axios from "axios";
+import Get from "./components/get.vue";
+import Post from "./components/post.vue";
+import Delet from "./components/delet.vue";
+import Put from "./components/put.vue";
+
 export default {
   name: "App",
 
   components: {
     Menu,
+    Get,
+    Post,
+    Delet,
+    Put,
   },
   data: function() {
     return {
-      data: [],
+      method: "post",
     };
   },
-  mounted() {
-    try {
-      axios
-        .get("http://localhost:8080/take/bus/model/Fiat")
-        .then((response) => (this.data = response));
-    } catch (e) {
-      console.log(e);
-    }
-  },
+
   methods: {
-    getTags: function() {},
+    getInfo: function(e) {
+      console.log(e);
+      this.method = e;
+    },
   },
 };
 </script>

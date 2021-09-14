@@ -1,9 +1,9 @@
 <template>
   <div class="links">
-    <a href="/get">get</a>
-    <a href="/post">post</a>
-    <a href="/delete">delete</a>
-    <a href="/put">put</a>
+    <button @click="$emit('changeMethod', 'get')">get</button>
+    <button @click="$emit('changeMethod', 'post')">post</button>
+    <button @click="$emit('changeMethod', 'delete')">delete</button>
+    <button @click="$emit('changeMethod', 'put')">put</button>
   </div>
 </template>
 
